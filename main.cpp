@@ -19,7 +19,13 @@ void punto2() {
 
 // ---------- PERSONA C: punto 3 (base de proteínas) ----------
 void punto3_base() {
-    // TODO: probar traducir() y leer_proteinas()
+    auto t = construir_tabla_codones();
+    cout << t["ATG"] << t["GAG"] << t["TAA"] << " " << t.size() << endl;   // ME* 64
+    cout << traducir("ATGGAGAGCCTT", 0) << endl;                           // MESL
+    cout << traducir("AATGGAGAGCCTT", 1) << endl;                          // MESL, marco 1
+
+    auto prot = leer_proteinas("archivos/seq-proteins.txt");
+    cout << prot.size() << " " << prot[0].first << " " << prot[0].second.substr(0, 17) << endl;   // ~24 QHD43415_1 MESLVPGFNEKTHVQLS
 }
 
 int main() {

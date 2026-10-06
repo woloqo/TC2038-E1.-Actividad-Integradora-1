@@ -4,6 +4,7 @@
 #include "kmp.h"
 #include "manacher.h"
 #include "codones.h"
+#include "hits.h"
 using namespace std;
 
 // ---------- PERSONA A: punto 1 (genes) ----------

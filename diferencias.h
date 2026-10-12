@@ -45,7 +45,19 @@ inline int punto4a(const string& wuhan, const string& texas, const vector<Hit>& 
         char bw = wuhan[i], bt = texas[i + desfase];
         if (bw == bt) continue;
 
-        cout << "Pos " << i + 1 << ": " << bw << " -> " << bt;
+                cout << "Pos " << i + 1 << ": " << bw << " -> " << bt << "\n";
+
+        // Codón afectado en cada uno de los 3 frames de lectura del genoma
+        for (int m = 0; m < 3; m++) {
+            if (i < m) continue;
+            int c = m + ((i - m) / 3) * 3;
+            if (c + 3 > n) continue;
+            string fw = wuhan.substr(c, 3);
+            string ft = texas.substr(c + desfase, 3);
+            cout << "    frame " << m << " | " << fw << " (" << tabla[fw] << ") -> "
+                 << ft << " (" << tabla[ft] << ")\n";
+        }
+        cout << "   ";
 
         int idx = hit_en(hits, i);
         if (idx == -1) {

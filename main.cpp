@@ -11,6 +11,7 @@
 using namespace std;
 
 // ---------- PERSONA A: punto 1 (genes) ----------
+// Busca cada gen (M, S, ORF1AB) dentro del genoma de Wuhan.
 void punto1() {
    auto [encGenoma, genoma] = leer_fasta("archivos/SARS-COV-2-MN908947.3.txt");
     if (genoma.empty()) {

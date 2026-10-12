@@ -6,7 +6,8 @@
 #include "codones.h"
 #include "hits.h"
 using namespace std;
-
+// contar_no_acgt: cuenta caracteres que no son A, C, G ni T. 
+//Complejidad: O(n)
 inline int contar_no_acgt(const string& s) {
     int c = 0;
     for (char x : s)

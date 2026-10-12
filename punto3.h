@@ -124,10 +124,10 @@ inline void demo_frameshift(const string& genoma, const vector<Hit>& hits) {
 }
 
 // Corre todo el punto 3: busqueda, impresion, verificacion, tiempos y demo.
-inline void ejecutar_punto3(const string& genoma, const vector<pair<string, string>>& proteinas) {
+inline vector<Hit> ejecutar_punto3(const string& genoma, const vector<pair<string, string>>& proteinas) {
     if (genoma.empty() || proteinas.empty()) {
         cout << "Punto 3: faltan datos (genoma o proteinas vacios)\n";
-        return;
+        return {};
     }
     cout << "===== PUNTO 3: proteinas en el genoma de Wuhan =====\n";
     cout << "Genoma: " << genoma.size() << " nt   Proteinas: " << proteinas.size() << "\n";
@@ -153,4 +153,5 @@ inline void ejecutar_punto3(const string& genoma, const vector<pair<string, stri
     cout << "Tiempo de buscar_proteinas: " << ms << " ms\n\n";
 
     demo_frameshift(genoma, hits);
+    return hits;
 }

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <chrono>
 #include "kmp.h"
 #include "codones.h"
 #include "hits.h"
@@ -15,20 +16,24 @@ inline int contar_no_acgt(const string& s) {
     return c;
 }
 
-inline void punto4a(const string& wuhan, const string& texas, const vector<Hit>& hits) {
+inline int punto4a(const string& wuhan, const string& texas, const vector<Hit>& hits) {
     cout << "=== Punto 4a: Wuhan 2019 vs Texas 2020 ===\n";
     cout << "Largo Wuhan: " << wuhan.size() << "   Largo Texas: " << texas.size() << "\n";
     cout << "Caracteres no ACGT -> Wuhan: " << contar_no_acgt(wuhan)
          << "   Texas: " << contar_no_acgt(texas) << "\n";
 
     // Alinear: buscar los primeros 20 caracteres de Wuhan dentro de Texas
+    auto t0 = chrono::steady_clock::now();
     vector<int> m = kmp_buscar(texas, wuhan.substr(0, 20));
+    auto t1 = chrono::steady_clock::now();
     if (m.empty()) {
         cout << "No se pudo alinear los genomas\n";
-        return;
+        return -1;
     }
     int desfase = m[0];
-    cout << "Desfase: " << desfase << "\n\n";
+    cout << "Desfase: " << desfase << "\n";
+    cout << "Tiempo de alineacion KMP: "
+         << chrono::duration<double, milli>(t1 - t0).count() << " ms\n\n";
 
     auto tabla = construir_tabla_codones();
     int sinonimas = 0, cambian = 0, no_cod = 0, ambiguas = 0;
@@ -87,4 +92,5 @@ inline void punto4a(const string& wuhan, const string& texas, const vector<Hit>&
     cout << "Cambian aminoacido: " << cambian << "\n";
     cout << "No codificantes:    " << no_cod << "\n";
     cout << "Ambiguas:           " << ambiguas << "\n";
+    return desfase;
 }

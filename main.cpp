@@ -7,6 +7,7 @@
 #include "lcs.h"
 #include "codones.h"
 #include "hits.h"
+#include "diferencias.h"
 using namespace std;
 
 // ---------- PERSONA A: punto 1 (genes) ----------
@@ -71,10 +72,23 @@ void punto3_base() {
     cout << "verificar: " << verificar_hits(genoma, prot, hits) << "/" << hits.size() << endl;
 }
 
+void punto4() {
+    auto [encW, wuhan] = leer_fasta("archivos/SARS-COV-2-MN908947.3.txt");
+    auto [encT, texas] = leer_fasta("archivos/SARS-COV-2-MT106054.1.txt");
+    auto prot = leer_proteinas("archivos/seq-proteins.txt");
+
+    vector<Hit> hits = buscar_proteinas(wuhan, prot);
+    cout << "Hits verificados: " << verificar_hits(wuhan, prot, hits)
+         << "/" << hits.size() << "\n\n";
+
+    punto4a(wuhan, texas, hits);
+}
+
 int main() {
-    //punto1();
-    //punto2();
+    punto1();
+    punto2();
     //prueba_lcs();
     punto3_base();
+    punto4();
     return 0;
 }

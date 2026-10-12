@@ -1,0 +1,6 @@
+>M inicio=494 fin=504 longitud=11
+CTAAAGAAATC
+>S inicio=571 fin=585 longitud=15
+GAATTTGTGTTTAAG
+>ORF1AB inicio=9712 fin=9731 longitud=20
+CTCAATGACTTCAGTAACTC

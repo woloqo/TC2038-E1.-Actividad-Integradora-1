@@ -10,6 +10,8 @@ using namespace std;
 using namespace std;
 
 // Índices de inicio (base 0) de cada aparición de patron en texto
+// kmp_buscar: algoritmo Knuth-Morris-Pratt (KMP).
+// Encuentra todas las apariciones de 'patron' en 'texto' (índices base 0), incluyendo apariciones traslapadas.
 inline vector<int> kmp_buscar(const string& texto, const string& patron) {
     vector<int> res;
     int n = texto.size(), m = patron.size();

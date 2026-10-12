@@ -4,6 +4,7 @@
 using namespace std;
 
 // Devuelve (encabezado, secuencia). Salta '>' y une líneas, quitando \r \n y espacios
+//lee un archivo en formato FASTA.
 inline pair<string,string> leer_fasta(const string& ruta) {
     ifstream archivo(ruta);
     if (!archivo.is_open()) {
